@@ -7,7 +7,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-  
+      - name: Checkout code
       - uses: actions/checkout@v3
         with: 
          cache: 'npm'
@@ -17,9 +17,15 @@ jobs:
           node-version: '21'
           cache: npm
 
-      - name: npm-install
+      - name: Install Dependency npm-install
         run: npm ci
       - run: sudo apt-get install xvfb
 
       - name: Run Nightwatch tests
         run: xvfb-run --auto-servernum npm test -- --env chrome
+      - name: Archive test reports
+        if: always() 
+        uses: actions/upload-artifact@v2
+        with:
+          name: test-reports
+          path: reports 
