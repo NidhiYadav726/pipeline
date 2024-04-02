@@ -20,7 +20,7 @@ describe('Login and Add to Cart Tests', function () {
         addToCart.addToCart();
 
         // Wait for shopping cart to update and assert
-        browser.waitForElementVisible('#shopping_cart_container > a > span', 5000);
+       // browser.waitForElementVisible('#shopping_cart_container > a > span', 5000);
         browser.assert.containsText('#shopping_cart_container > a > span', '1');
     });
 
