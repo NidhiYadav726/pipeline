@@ -15,13 +15,13 @@ describe('Login and Add to Cart Tests', function () {
         addToCart.closeBrowser();
     });
 
-    // it('Successfully add product to cart after login', function (browser, done) {
-    //     const addToCart = browser.page.addToCartPage();
-        // addToCart.addToCart();
+    it('Successfully add product to cart after login', function (browser, done) {
+        const addToCart = browser.page.addToCartPage();
+        addToCart.addToCart();
 
-        // Wait for shopping cart to update and assert
-       // browser.waitForElementVisible('#shopping_cart_container > a > span', 5000);
-       // browser.assert.containsText('#shopping_cart_container > a > span', '1');
-    // });
+        Wait for shopping cart to update and assert
+       browser.waitForElementVisible('#shopping_cart_container > a > span', 5000);
+       browser.assert.containsText('#shopping_cart_container > a > span', '1');
+    });
 
 });
