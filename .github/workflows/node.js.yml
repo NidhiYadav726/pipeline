@@ -3,6 +3,8 @@ on:
   - pull_request
   - push
   - workflow_dispatch
+ 
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -22,3 +24,15 @@ jobs:
           sudo apt-get install xvfb
       - name: Run Nightwatch tests
         run: xvfb-run --auto-servernum npm test -- --env chrome
+       # Step to capture test results as artifacts
+      - name: Archive test results
+        if: always()  # Ensure this step runs even if the previous steps fail
+        uses: actions/upload-artifact@v2
+        with:
+          name: test-results
+          path: tests_output 
+      - name: Send notifications
+        if: failure() 
+        run: |
+          # Add your notification mechanism here (e.g., sending an email, Slack message)
+          echo "Test failures occurred. Please check the test reports for details."
