@@ -10,11 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with: 
           cache: 'npm'
       - name: 'Use Node.js ${{ matrix.node-version }}'
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: '21'
           cache: npm
@@ -27,7 +27,7 @@ jobs:
        # Step to capture test results as artifacts
       - name: Archive test results
         if: always()  # Ensure this step runs even if the previous steps fail
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: test-results
           path: tests_output 
